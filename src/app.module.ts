@@ -3,10 +3,11 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TitularModule } from './app/titular/titular.module'
+import { DependenteModule } from './app/dependente/dependente.module'
 
 
 @Module({
-  imports: [TitularModule, ConfigModule.forRoot({
+  imports: [DependenteModule, TitularModule, ConfigModule.forRoot({
     isGlobal: true,
     envFilePath: ['.env', 'variaveis.ini'],
   })],
