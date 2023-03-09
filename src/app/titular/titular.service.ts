@@ -12,5 +12,9 @@ export class TitularService{
         this.titular_repository.create(titular)
 
     }
+
+    async update(titularId: string, titular: Prisma.TitularUpdateInput){
+        return this.titular_repository.update(titularId, titular)
+    }
 }
 

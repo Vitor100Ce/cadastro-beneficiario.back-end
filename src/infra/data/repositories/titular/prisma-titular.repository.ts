@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common/decorators";
 import { ITitularRepository } from "src/app/titular/titular.repository";
 import { PrismaService } from "src/infra/prisma/prisma.service";
-import { Prisma } from "@prisma/client"
+import { Prisma, Titular } from "@prisma/client"
 
 @Injectable()
 export class PrismaTitularRepository implements ITitularRepository{
@@ -13,4 +13,10 @@ export class PrismaTitularRepository implements ITitularRepository{
         await this.prisma.titular.create({data: titular})
         
     }
+
+    async update(titularId: string, titular: Prisma.TitularUpdateInput): Promise<Titular> {
+        return await this.prisma.titular.update({where: {id:titularId}, data: titular})
+    }
+
+
 }

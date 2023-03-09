@@ -15,3 +15,4 @@ import { DependenteModule } from './app/dependente/dependente.module'
   providers: [AppService],
 })
 export class AppModule {}
+
