@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SituacaoEnum {
+  ativo
+  inativo
+}
+
+enum ModalidadeEnum {
+  coparticipacao
+  mensalidade
+}
+
+model Titular {
+  id String @id @default(uuid())
+  nome String
+  situacao SituacaoEnum
+  modalidade ModalidadeEnum
+  adesao DateTime
+  cancelamento DateTime?
+  data DateTime @default(now())
+  dependentes Dependente[]
+}
+
+model Dependente {
+
+  id String @id @default(uuid())
+  nome String
+  situacao SituacaoEnum
+  modalidade ModalidadeEnum
+  adesao DateTime
+  cancelamento DateTime?
+  data DateTime @default(now())
+  titular Titular @relation(fields:[titularId],references:[id])
+  titularId String
+
+}
