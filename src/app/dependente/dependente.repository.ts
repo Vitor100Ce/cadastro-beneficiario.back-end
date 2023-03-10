@@ -7,5 +7,5 @@ export interface IDependenteRepository{
     create(dependente: IcreatDependenteDto):Promise<void>
     update(dependenteId: string, dependente: IUpdateDependente):Promise<Dependente>
     disableDependente(dependenteId: string):Promise<void>
-
+    enableDependente(dependenteId: string):Promise<void>
 }

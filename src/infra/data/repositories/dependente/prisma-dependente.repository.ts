@@ -30,4 +30,8 @@ export class PrismaDependenteRepository implements IDependenteRepository{
     async disableDependente(dependenteId: string): Promise<void> {
         await this.prisma.dependente.update({where: {id:dependenteId}, data:{cancelamento: new Date(), situacao: SituacaoEnum.inativo}})
     }
+
+    async enableDependente(dependenteId: string): Promise<void> {
+        await this.prisma.dependente.update({where: {id:dependenteId}, data:{cancelamento: null, situacao: SituacaoEnum.ativo}})
+    }
 }

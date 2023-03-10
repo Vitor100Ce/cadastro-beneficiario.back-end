@@ -27,4 +27,9 @@ export class DependenteController{
         this.dependenteService.disableDependente(dependenteId)
     }
 
+    @Patch('enable/:dependenteId')
+    enableDependente(@Param('dependenteId') dependenteId: string){
+        this.dependenteService.enableDependente(dependenteId)
+    }
+
 }

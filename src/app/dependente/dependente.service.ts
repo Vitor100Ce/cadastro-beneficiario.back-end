@@ -22,4 +22,9 @@ export class DependenteService{
     async disableDependente(dependenteId: string){
         this.dependente_repository.disableDependente(dependenteId)
     }
+
+    async enableDependente(dependenteId: string){
+        this.dependente_repository.enableDependente(dependenteId)
+    }
+
 }
