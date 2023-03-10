@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common/decorators";
 import { ITitularRepository } from "src/app/titular/titular.repository";
 import { PrismaService } from "src/infra/prisma/prisma.service";
-import { Prisma, Titular } from "@prisma/client"
+import { Prisma, SituacaoEnum, Titular } from "@prisma/client"
 import { ISearchTitular } from "src/app/titular/dto/search.dto";
 import { IPagination } from "src/infra/interfaces/pagination.interface";
 import { filter } from "rxjs";
@@ -23,11 +23,11 @@ export class PrismaTitularRepository implements ITitularRepository{
 
 
     async disableTitular(titularId: string): Promise<void> {
-        await this.prisma.titular.update({where: {id:titularId}, data:{cancelamento: new Date()}})
+        await this.prisma.titular.update({where: {id:titularId}, data:{cancelamento: new Date(), situacao: SituacaoEnum.inativo}})
     }
 
     async enableTitular(titularId: string): Promise<void> {
-        await this.prisma.titular.update({where: {id:titularId}, data:{cancelamento: null}})
+        await this.prisma.titular.update({where: {id:titularId}, data:{cancelamento: null, situacao: SituacaoEnum.ativo}})
     }
 
 
