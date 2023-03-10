@@ -11,4 +11,5 @@ export interface IDependenteRepository{
     disableDependente(dependenteId: string):Promise<void>
     enableDependente(dependenteId: string):Promise<void>
     search(filter: ISearchDependente):Promise<IPagination<Dependente>>
+    getDependenteById(dependenteId: string):Promise<Dependente>
 }

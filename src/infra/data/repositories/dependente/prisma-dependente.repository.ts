@@ -37,6 +37,12 @@ export class PrismaDependenteRepository implements IDependenteRepository{
         await this.prisma.dependente.update({where: {id:dependenteId}, data:{cancelamento: null, situacao: SituacaoEnum.ativo}})
     }
 
+
+    async getDependenteById(dependenteId: string): Promise<Dependente> {
+        return await this.prisma.dependente.findUnique({where: {id:dependenteId}})
+        
+    }
+
     async search({pageIndex, pageSize, ...filter}: ISearchDependente): Promise<IPagination<Dependente>> {
         const prismaFilter: Omit<ISearchDependente, 'pageIndex'|'pageSize'> = filter
         const skip: number = pageIndex * pageSize

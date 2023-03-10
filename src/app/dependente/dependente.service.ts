@@ -32,4 +32,8 @@ export class DependenteService{
         return this.dependente_repository.search(filter)
     }
 
+    async getTitularById(dependenteId: string){
+        return this.dependente_repository.getDependenteById(dependenteId)
+    }
+
 }

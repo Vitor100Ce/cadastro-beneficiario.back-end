@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Param, Patch, Post, Put, Query } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { DependenteService } from "./dependente.service";
-import { ApiTags } from "@nestjs/swagger"
 import { CreatDependenteDto } from "./dto/create.dto";
-import { UpdateDependenteDto } from "./dto/uptade.dto";
 import { SearchDependenteDto } from "./dto/search.dto";
+import { UpdateDependenteDto } from "./dto/uptade.dto";
 
 
 
@@ -37,5 +37,11 @@ export class DependenteController{
     search(@Query() searchDependenteDto:SearchDependenteDto){
         return this.dependenteService.search(searchDependenteDto)
     }
+
+    @Get(':dependenteId')
+    getTitularById(@Param('dependenteId') dependenteId: string){
+        return this.dependenteService.getTitularById(dependenteId)
+    }
+
 
 }
