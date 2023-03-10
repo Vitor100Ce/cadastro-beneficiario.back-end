@@ -31,6 +31,13 @@ export class PrismaTitularRepository implements ITitularRepository{
     }
 
 
+    async getTitularById(titularId: string): Promise<Titular> {
+        return await this.prisma.titular.findUnique({where: {id:titularId}})
+        
+    }
+
+
+
     async search({pageIndex, pageSize, ...filter}: ISearchTitular): Promise<IPagination<Titular>> {
         const prismaFilter: Omit<ISearchTitular, 'pageIndex'|'pageSize'> = filter
         const skip: number = pageIndex * pageSize

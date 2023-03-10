@@ -30,4 +30,8 @@ export class TitularService{
         return this.titular_repository.search(filter)
     }
 
+    async getTitularById(titularId: string){
+        return this.titular_repository.getTitularById(titularId)
+    }
+
 }

@@ -9,4 +9,5 @@ export interface ITitularRepository{
     disableTitular(titularId: string):Promise<void>
     enableTitular(titularId: string):Promise<void>
     search(filter: ISearchTitular):Promise<IPagination<Titular>>
+    getTitularById(titularId: string):Promise<Titular>
 }

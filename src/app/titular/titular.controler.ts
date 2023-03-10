@@ -38,4 +38,9 @@ export class TitulaController{
         return this.titularService.search(searchTitularDto)
     }
 
+    @Get(':titularId')
+    getTitularById(@Param('titularId') titularId: string){
+        return this.titularService.getTitularById(titularId)
+    }
+
 }
