@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Param, Patch, Post, Put } from "@nestjs/common";
 import { TitularService } from "./titular.service";
 import { ApiTags } from "@nestjs/swagger"
 import { CreatTitularDto } from "./dto/create.dto";
@@ -20,5 +20,12 @@ export class TitulaController{
     update(@Param('titularId') titularId: string, @Body() uptadeTitularDto:UptadeTitularDto){
         return this.titularService.update(titularId, uptadeTitularDto)
     }
+
+
+    @Patch('disable/:titularId')
+    disableTitular(@Param('titularId') titularId: string){
+        this.titularService.disableTitular(titularId)
+    }
+
 
 }

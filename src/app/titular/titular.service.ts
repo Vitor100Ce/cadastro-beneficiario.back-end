@@ -16,5 +16,9 @@ export class TitularService{
     async update(titularId: string, titular: Prisma.TitularUpdateInput){
         return this.titular_repository.update(titularId, titular)
     }
-}
 
+    async disableTitular(titularId: string){
+        this.titular_repository.disableTitular(titularId)
+    }
+
+}
