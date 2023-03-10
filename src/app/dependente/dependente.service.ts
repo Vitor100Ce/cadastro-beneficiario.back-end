@@ -1,6 +1,7 @@
 import { IDependenteRepository, DEPENDENTE_REPOSITORY } from "./dependente.repository";
 import { Inject, Injectable } from '@nestjs/common'
 import { IcreatDependenteDto } from "./dto/create.dto";
+import { IUpdateDependente } from "./dto/uptade.dto";
 
 @Injectable()
 export class DependenteService{
@@ -11,5 +12,9 @@ export class DependenteService{
     async create(dependente:IcreatDependenteDto){
         this.dependente_repository.create(dependente)
 
+    }
+
+    async update(dependenteId: string, dependente: IUpdateDependente){
+        return this.dependente_repository.update(dependenteId, dependente)
     }
 }
