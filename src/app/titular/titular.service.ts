@@ -1,6 +1,7 @@
 import { ITitularRepository, TITULAR_REPOSITORY } from "./titular.repository";
 import { Inject, Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import { ISearchTitular } from "./dto/search.dto";
 
 @Injectable()
 export class TitularService{
@@ -23,6 +24,10 @@ export class TitularService{
 
     async enableTitular(titularId: string){
         this.titular_repository.enableTitular(titularId)
+    }
+
+    async search(filter: ISearchTitular){
+        return this.titular_repository.search(filter)
     }
 
 }

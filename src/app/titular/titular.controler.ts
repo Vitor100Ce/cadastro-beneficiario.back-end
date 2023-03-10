@@ -1,8 +1,9 @@
-import { Body, Controller, Param, Patch, Post, Put } from "@nestjs/common";
+import { Body, Controller, Get, Param, Patch, Post, Put, Query } from "@nestjs/common";
 import { TitularService } from "./titular.service";
 import { ApiTags } from "@nestjs/swagger"
 import { CreatTitularDto } from "./dto/create.dto";
 import { UptadeTitularDto } from "./dto/uptade.dto";
+import { SearchTitularDto } from "./dto/search.dto";
 
 @ApiTags('titular')
 @Controller('titular')
@@ -32,5 +33,9 @@ export class TitulaController{
         this.titularService.enableTitular(titularId)
     }
 
+    @Get()
+    search(@Query() searchTitularDto:SearchTitularDto){
+        return this.titularService.search(searchTitularDto)
+    }
 
 }

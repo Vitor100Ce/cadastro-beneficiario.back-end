@@ -2,6 +2,9 @@ import { Injectable } from "@nestjs/common/decorators";
 import { ITitularRepository } from "src/app/titular/titular.repository";
 import { PrismaService } from "src/infra/prisma/prisma.service";
 import { Prisma, Titular } from "@prisma/client"
+import { ISearchTitular } from "src/app/titular/dto/search.dto";
+import { IPagination } from "src/infra/interfaces/pagination.interface";
+import { filter } from "rxjs";
 
 @Injectable()
 export class PrismaTitularRepository implements ITitularRepository{
@@ -27,5 +30,27 @@ export class PrismaTitularRepository implements ITitularRepository{
         await this.prisma.titular.update({where: {id:titularId}, data:{cancelamento: null}})
     }
 
+
+    async search({pageIndex, pageSize, ...filter}: ISearchTitular): Promise<IPagination<Titular>> {
+        const prismaFilter: Omit<ISearchTitular, 'pageIndex'|'pageSize'> = filter
+        const skip: number = pageIndex * pageSize
+        const [titulares, totalCount] = await Promise.all([
+            this.prisma.titular.findMany({
+                where: prismaFilter,
+                skip,
+                take: Number(pageSize)
+
+            }),
+            this.prisma.titular.count({
+                where: prismaFilter,
+            })
+        ])
+
+        return {
+            itens: titulares,
+            totalCount
+        }
+
+    }
 
 }
