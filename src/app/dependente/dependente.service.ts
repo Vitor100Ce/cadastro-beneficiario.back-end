@@ -17,4 +17,9 @@ export class DependenteService{
     async update(dependenteId: string, dependente: IUpdateDependente){
         return this.dependente_repository.update(dependenteId, dependente)
     }
+
+
+    async disableDependente(dependenteId: string){
+        this.dependente_repository.disableDependente(dependenteId)
+    }
 }

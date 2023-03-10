@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common/decorators";
 import { IDependenteRepository } from "src/app/dependente/dependente.repository";
 import { PrismaService } from "src/infra/prisma/prisma.service";
 import {IcreatDependenteDto } from "src/app/dependente/dto/create.dto"
-import { Dependente } from "@prisma/client";
+import { Dependente, SituacaoEnum } from "@prisma/client";
 import { IUpdateDependente } from 'src/app/dependente/dto/uptade.dto'
 
 
@@ -25,5 +25,9 @@ export class PrismaDependenteRepository implements IDependenteRepository{
 
     async update(dependenteId: string, dependente: IUpdateDependente):Promise<Dependente>{
         return await this.prisma.dependente.update({where: {id:dependenteId}, data: dependente})
+    }
+
+    async disableDependente(dependenteId: string): Promise<void> {
+        await this.prisma.dependente.update({where: {id:dependenteId}, data:{cancelamento: new Date(), situacao: SituacaoEnum.inativo}})
     }
 }
