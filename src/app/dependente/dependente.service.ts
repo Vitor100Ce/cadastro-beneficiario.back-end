@@ -2,6 +2,7 @@ import { IDependenteRepository, DEPENDENTE_REPOSITORY } from "./dependente.repos
 import { Inject, Injectable } from '@nestjs/common'
 import { IcreatDependenteDto } from "./dto/create.dto";
 import { IUpdateDependente } from "./dto/uptade.dto";
+import { ISearchDependente } from "./dto/search.dto";
 
 @Injectable()
 export class DependenteService{
@@ -25,6 +26,10 @@ export class DependenteService{
 
     async enableDependente(dependenteId: string){
         this.dependente_repository.enableDependente(dependenteId)
+    }
+
+    async search(filter: ISearchDependente){
+        return this.dependente_repository.search(filter)
     }
 
 }

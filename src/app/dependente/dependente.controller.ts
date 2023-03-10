@@ -1,8 +1,9 @@
-import { Body, Controller, Param, Patch, Post, Put } from "@nestjs/common";
+import { Body, Controller, Get, Param, Patch, Post, Put, Query } from "@nestjs/common";
 import { DependenteService } from "./dependente.service";
 import { ApiTags } from "@nestjs/swagger"
 import { CreatDependenteDto } from "./dto/create.dto";
 import { UpdateDependenteDto } from "./dto/uptade.dto";
+import { SearchDependenteDto } from "./dto/search.dto";
 
 
 
@@ -30,6 +31,11 @@ export class DependenteController{
     @Patch('enable/:dependenteId')
     enableDependente(@Param('dependenteId') dependenteId: string){
         this.dependenteService.enableDependente(dependenteId)
+    }
+
+    @Get()
+    search(@Query() searchDependenteDto:SearchDependenteDto){
+        return this.dependenteService.search(searchDependenteDto)
     }
 
 }
